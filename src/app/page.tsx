@@ -1,14 +1,15 @@
 import cloudinary from "@/lib/cloudinary";
 import ImageProps from "@/app/lib/types";
 import Header from "@/app/components/Header";
+import ImageGallery from "./components/ImageGallery";
 
 export default async function Home() {
   const images = await getPhotos();
-  console.log(images);
 
   return (
     <main className="mx-auto max-w-screen-2xl px-4">
       <Header />
+      <ImageGallery />
     </main>
   );
 }
