@@ -1,7 +1,7 @@
 import cloudinary from "@/lib/cloudinary";
-import ImageProps from "@/app/lib/types";
+import { CloudinaryResourceProps } from "@/app/lib/types";
 import Header from "@/app/components/Header";
-import ImageGallery from "./components/ImageGallery";
+import PhotoGallery from "@/app/components/PhotoGallery";
 
 export default async function Home() {
   const images = await getPhotos();
@@ -9,7 +9,7 @@ export default async function Home() {
   return (
     <main className="mx-auto max-w-screen-2xl px-4">
       <Header />
-      <ImageGallery />
+      <PhotoGallery images={images} />
     </main>
   );
 }
@@ -22,7 +22,7 @@ async function getPhotos() {
     .with_field(["tags", "context"])
     .execute();
 
-  return results.resources.map((resource: ImageProps) => {
+  return results.resources.map((resource: CloudinaryResourceProps) => {
     return {
       id: resource.asset_id,
       width: resource.width,

@@ -1,4 +1,7 @@
-export default function ImageGallery() {
+import { PhotoGalleryProps } from "@/app/lib/types";
+
+export default function PhotoGallery({ images }: PhotoGalleryProps) {
+  console.log(images);
   return (
     <section aria-labelledby="gallery-title">
       <h2 className="sr-only">Photography gallery</h2>
