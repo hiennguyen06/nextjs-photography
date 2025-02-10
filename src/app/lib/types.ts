@@ -6,6 +6,7 @@ export interface CloudinaryResourceProps {
   tags?: string[]; // Array of strings
   alt?: string;
   title?: string;
+  public_id: string;
   context?: {
     alt: string;
     title: string;
@@ -19,8 +20,15 @@ export interface ImageProps {
   tags?: string[];
   alt?: string;
   title?: string;
+  public_id: string;
+  format: string;
 }
 
 export interface PhotoGalleryProps {
   images: ImageProps[];
+}
+
+export interface PhotoProps {
+  image: ImageProps;
+  index: number;
 }

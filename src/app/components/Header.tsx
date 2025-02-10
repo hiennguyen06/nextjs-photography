@@ -1,7 +1,7 @@
 import Image from "next/image";
 import profilePicture from "/public/hn-profile.webp";
 
-export default function Header() {
+const Header = () => {
   return (
     <header>
       <figure className="flex flex-col items-center gap-4 py-8">
@@ -22,4 +22,6 @@ export default function Header() {
       </figure>
     </header>
   );
-}
+};
+
+export default Header;
