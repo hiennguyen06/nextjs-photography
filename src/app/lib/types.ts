@@ -26,9 +26,15 @@ export interface ImageProps {
 
 export interface PhotoGalleryProps {
   images: ImageProps[];
+  selectedTag: string | undefined;
 }
 
 export interface PhotoProps {
   image: ImageProps;
   index: number;
+}
+
+export interface TagFiltersProps {
+  allTags: string[];
+  selectedTag?: string | null;
 }

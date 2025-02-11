@@ -25,13 +25,18 @@ const getPhotos = async () => {
   });
 };
 
-const Home = async () => {
+const Home = async ({
+  searchParams,
+}: {
+  searchParams: Promise<{ tag?: string }>;
+}) => {
   const images = await getPhotos();
+  const selectedTag = (await searchParams).tag;
 
   return (
     <main className="mx-auto max-w-screen-xl px-4">
       <Header />
-      <PhotoGallery images={images} />
+      <PhotoGallery images={images} selectedTag={selectedTag} />
     </main>
   );
 };
