@@ -29,7 +29,7 @@ const Home = async () => {
   const images = await getPhotos();
 
   return (
-    <main className="mx-auto max-w-screen-2xl px-4">
+    <main className="mx-auto max-w-screen-xl px-4">
       <Header />
       <PhotoGallery images={images} />
     </main>

@@ -6,7 +6,7 @@ const PhotoGallery = ({ images }: PhotoGalleryProps) => {
   return (
     <section aria-labelledby="gallery-title">
       <h2 className="sr-only">Photography gallery</h2>
-      <ul className="grid g grid-cols-1 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-4 select-none">
+      <ul className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4 select-none">
         {images.map((image, index) => {
           return (
             <li key={image.id}>
