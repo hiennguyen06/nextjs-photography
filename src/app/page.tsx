@@ -1,4 +1,3 @@
-import cloudinary from "@/lib/cloudinary";
 import { CloudinaryResourceProps } from "@/app/lib/types";
 import Header from "@/app/components/Header";
 import PhotoGallery from "@/app/components/PhotoGallery";
@@ -30,7 +29,6 @@ const getPhotos = async () => {
   );
 
   const results = await response.json();
-  console.log(results);
 
   return results.resources.map((resource: CloudinaryResourceProps) => ({
     id: resource.asset_id,
