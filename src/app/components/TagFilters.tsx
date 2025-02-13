@@ -63,7 +63,7 @@ const TagFilters = memo(({ allTags, selectedTag }: TagFiltersProps) => {
   }, [router]);
 
   return (
-    <div className="sticky top-0 z-10 bg-white py-4">
+    <div className="sticky top-0 z-2 bg-white py-4">
       <ul
         className="relative flex flex-wrap justify-center gap-2"
         role="tablist"
