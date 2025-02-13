@@ -1,3 +1,8 @@
-export default function PhotoModal() {
-  return <div>PhotoModal</div>;
+export default async function PhotoModal({
+  params,
+}: {
+  params: Promise<{ id: string }>;
+}) {
+  const id = (await params).id;
+  return <div>Modal - {id}</div>;
 }

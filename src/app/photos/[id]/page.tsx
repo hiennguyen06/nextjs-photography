@@ -4,5 +4,5 @@ export default async function PhotoPage({
   params: Promise<{ id: string }>;
 }) {
   const id = (await params).id;
-  return <div className="card">{id}</div>;
+  return <div>PhotoPage - {id}</div>;
 }
