@@ -14,10 +14,13 @@ const PhotoGallery = ({ images, selectedTag }: PhotoGalleryProps) => {
     <section aria-labelledby="gallery-title">
       <h2 className="sr-only">Photography gallery</h2>
       <TagFilters allTags={allTags} selectedTag={selectedTag} />
-      <ul className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4 select-none">
+      <ul
+        role="list"
+        className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4 select-none"
+      >
         {filteredImages.map((image, index) => {
           return (
-            <li key={image.id}>
+            <li role="listitem" key={image.id}>
               <Photo image={image} index={index} />
             </li>
           );

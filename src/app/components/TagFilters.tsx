@@ -14,20 +14,22 @@ const TagButton = memo(
     isSelected: boolean;
     onClick: (tag: string) => void;
   }) => (
-    <button
-      onClick={() => onClick(tag)}
-      aria-pressed={isSelected}
-      className={`
-      relative px-4 min-w-11 py-2 text-sm rounded-full transition-all
-      ${
-        isSelected
-          ? "bg-[#18181B] text-white"
-          : "bg-[#F4F4F5] hover:bg-[#E4E4E7]"
-      }
-    `}
-    >
-      {tag}
-    </button>
+    <li role="listitem">
+      <button
+        onClick={() => onClick(tag)}
+        aria-pressed={isSelected}
+        className={`
+        relative px-4 min-w-11 py-2 text-sm rounded-full transition-all
+        ${
+          isSelected
+            ? "bg-[#18181B] text-white"
+            : "bg-[#F4F4F5] hover:bg-[#E4E4E7]"
+        }
+      `}
+      >
+        {tag}
+      </button>
+    </li>
   )
 );
 
@@ -63,26 +65,32 @@ const TagFilters = memo(({ allTags, selectedTag }: TagFiltersProps) => {
   }, [router]);
 
   return (
-    <div className="sticky top-0 z-2 bg-white py-4">
+    <div
+      className="sticky top-0 z-2 bg-white py-4"
+      role="region"
+      aria-label="Post filters"
+    >
       <ul
         className="relative flex flex-wrap justify-center gap-2"
-        role="tablist"
+        role="list"
         aria-label="Filter posts by tag"
       >
-        <button
-          onClick={handleAllClick}
-          aria-pressed={optimisticSelectedTag === null}
-          className={`
-            relative px-4 min-w-11 py-2 text-sm rounded-full transition-all
-            ${
-              !optimisticSelectedTag
-                ? "bg-[#18181B] text-white"
-                : "bg-[#F4F4F5] hover:bg-[#E4E4E7]"
-            }
-          `}
-        >
-          All
-        </button>
+        <li role="listitem">
+          <button
+            onClick={handleAllClick}
+            aria-pressed={optimisticSelectedTag === null}
+            className={`
+              relative px-4 min-w-11 py-2 text-sm rounded-full transition-all
+              ${
+                !optimisticSelectedTag
+                  ? "bg-[#18181B] text-white"
+                  : "bg-[#F4F4F5] hover:bg-[#E4E4E7]"
+              }
+            `}
+          >
+            All
+          </button>
+        </li>
         {allTags.map((tag) => (
           <TagButton
             key={tag}
