@@ -9,7 +9,7 @@ const Photo = ({ image, index }: PhotoProps) => {
   const imageUrl = buildImageUrl(1280, public_id, format);
   return (
     <figure>
-      <Link href={`/photos/${id}`}>
+      <Link href={`/photos/${id}`} scroll={false}>
         <Image
           src={imageUrl}
           alt={alt || "Gallery image"}

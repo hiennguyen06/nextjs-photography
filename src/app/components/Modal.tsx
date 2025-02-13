@@ -36,17 +36,17 @@ export function Modal({ children }: { children: React.ReactNode }) {
   return (
     <div
       ref={overlay}
-      className="fixed inset-0 z-10 bg-black/60"
+      className="fixed inset-0 z-10 bg-black/60 flex items-center justify-center"
       onClick={onClick}
     >
       <button
         type="button"
-        className="absolute top-0 right-0 p-4 z-20 text-black"
+        className="absolute top-0 right-0 p-4 z-20 text-black bg-white"
         onClick={onDismiss}
       >
         Close
       </button>
-      <div ref={wrapper} className="w-1/2 h-1/2 bg-white relative">
+      <div ref={wrapper} className="w-full h-[75vh] bg-white relative ">
         {children}
       </div>
     </div>
