@@ -11,6 +11,7 @@ export interface CloudinaryResourceProps {
     alt: string;
     title: string;
   };
+  aspect_ratio: number;
 }
 
 export interface ImageProps {
@@ -22,6 +23,7 @@ export interface ImageProps {
   title?: string;
   public_id: string;
   format: string;
+  aspectRatio: number;
 }
 
 export interface PhotoGalleryProps {

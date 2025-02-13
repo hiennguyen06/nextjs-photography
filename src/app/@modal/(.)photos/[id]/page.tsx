@@ -13,12 +13,14 @@ const PhotoModal = async ({ params }: { params: Promise<{ id: string }> }) => {
   console.log(image);
   return (
     <Modal>
-      <figure>
+      <figure className="relative overflow-hidden w-[auto] h-[auto] flex flex-col justify-center items-center">
         <Image
           src={imageUrl}
-          alt={image.alt || "Gallery image"}
+          alt={image.public_id}
           width={image.width}
           height={image.height}
+          className="object-contain w-full max-h-[90vh]"
+          priority
         />
         <figcaption className="text-center text-sm text-gray-500">
           {image.title || "Gallery image"}
