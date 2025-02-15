@@ -66,12 +66,12 @@ const TagFilters = memo(({ allTags, selectedTag }: TagFiltersProps) => {
 
   return (
     <div
-      className="sticky top-0 z-2 bg-white py-4"
+      className="sticky top-0 z-2 bg-white py-2"
       role="region"
       aria-label="Post filters"
     >
       <ul
-        className="relative flex flex-wrap justify-center gap-2"
+        className="relative flex flex-wrap justify-center gap-1"
         role="list"
         aria-label="Filter posts by tag"
       >
