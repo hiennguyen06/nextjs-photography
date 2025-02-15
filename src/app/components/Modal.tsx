@@ -117,12 +117,12 @@ export function Modal({
   return (
     <div
       ref={overlay}
-      className="fixed inset-0 z-10 bg-white flex items-center justify-center"
+      className="fixed inset-0 z-10 bg-white flex items-center justify-center flex-col"
       onClick={onClick}
     >
       <button
         type="button"
-        className="absolute top-0 right-0 p-4 z-20 text-black"
+        className="p-4 self-start w-fit text-black"
         onClick={onDismiss}
         aria-label="Close modal"
       >
