@@ -3,8 +3,17 @@
 import { useCallback, useRef, useEffect } from "react";
 import { useRouter } from "next/navigation";
 import { X } from "lucide-react";
+import { ImageProps } from "@/app/lib/types";
 
-export function Modal({ children }: { children: React.ReactNode }) {
+export function Modal({
+  children,
+  currentImage,
+  images,
+}: {
+  children: React.ReactNode;
+  currentImage: ImageProps;
+  images: ImageProps[];
+}) {
   const overlay = useRef<HTMLDivElement>(null);
   const wrapper = useRef<HTMLDivElement>(null);
   const router = useRouter();
@@ -12,6 +21,15 @@ export function Modal({ children }: { children: React.ReactNode }) {
   const onDismiss = useCallback(() => {
     router.back();
   }, [router]);
+
+  const navigateToImage = useCallback(
+    (index: number) => {
+      const newIndex = (index + images.length) % images.length;
+
+      router.replace(`/photos/${newIndex}`, { scroll: false });
+    },
+    [images.length, router]
+  );
 
   const onClick = useCallback(
     (e: React.MouseEvent) => {
@@ -24,9 +42,23 @@ export function Modal({ children }: { children: React.ReactNode }) {
 
   const onKeyDown = useCallback(
     (e: KeyboardEvent) => {
-      if (e.key === "Escape") onDismiss();
+      switch (e.key) {
+        case "Escape":
+          onDismiss();
+          break;
+        case "ArrowRight":
+          if (currentImage.id < images.length) {
+            navigateToImage(currentImage.id + 1);
+          }
+          break;
+        case "ArrowLeft":
+          if (currentImage.id > 0) {
+            navigateToImage(currentImage.id - 1);
+          }
+          break;
+      }
     },
-    [onDismiss]
+    [currentImage.id, images.length, navigateToImage, onDismiss]
   );
 
   useEffect(() => {

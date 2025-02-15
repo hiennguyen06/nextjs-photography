@@ -27,19 +27,21 @@ const getPhotos = async () => {
   );
 
   const results = await response.json();
-  console.log(results);
 
-  return results.resources.map((resource: CloudinaryResourceProps) => ({
-    id: resource.asset_id,
-    public_id: resource.public_id,
-    width: resource.width,
-    height: resource.height,
-    format: resource.format,
-    tags: resource.tags,
-    alt: resource.context?.alt,
-    title: resource.context?.title,
-    aspectRatio: resource.aspect_ratio,
-  }));
+  return results.resources.map(
+    (resource: CloudinaryResourceProps, index: number) => ({
+      id: index,
+      asset_id: resource.asset_id,
+      public_id: resource.public_id,
+      width: resource.width,
+      height: resource.height,
+      format: resource.format,
+      tags: resource.tags,
+      alt: resource.context?.alt,
+      title: resource.context?.title,
+      aspectRatio: resource.aspect_ratio,
+    })
+  );
 };
 
 export default getPhotos;

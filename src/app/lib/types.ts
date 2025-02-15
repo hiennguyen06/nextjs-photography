@@ -1,4 +1,5 @@
 export interface CloudinaryResourceProps {
+  id: number;
   asset_id: string;
   width: number;
   height: number;
@@ -15,7 +16,8 @@ export interface CloudinaryResourceProps {
 }
 
 export interface ImageProps {
-  id: string;
+  id: number;
+  asset_id: string;
   width: number;
   height: number;
   tags?: string[];
