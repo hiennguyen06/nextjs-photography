@@ -17,6 +17,7 @@ export function Modal({
   const overlay = useRef<HTMLDivElement>(null);
   const wrapper = useRef<HTMLDivElement>(null);
   const touchStart = useRef<number>(0);
+  const touchStartY = useRef<number>(0);
   const router = useRouter();
 
   const onDismiss = useCallback(() => {
@@ -64,24 +65,37 @@ export function Modal({
 
   const handleTouchStart = (e: TouchEvent) => {
     touchStart.current = e.touches[0].clientX;
+    touchStartY.current = e.touches[0].clientY;
   };
 
   const handleTouchEnd = (e: TouchEvent) => {
     const touchEnd = e.changedTouches[0].clientX;
-    const touchDiff = touchStart.current - touchEnd;
+    const touchEndY = e.changedTouches[0].clientY;
+    const touchDiffX = touchStart.current - touchEnd;
+    const touchDiffY = touchStartY.current - touchEndY;
 
-    // Minimum swipe distance threshold (in pixels)
+    // Minimum swipe distance thresholds (in pixels)
     const minSwipeDistance = 50;
+    const minSwipeDownDistance = 100;
 
-    if (Math.abs(touchDiff) > minSwipeDistance) {
-      if (touchDiff > 0) {
+    // Check if the vertical swipe is more prominent than horizontal
+    if (Math.abs(touchDiffY) > Math.abs(touchDiffX)) {
+      // Handle vertical swipe
+      if (touchDiffY < -minSwipeDownDistance) {
+        // Swiped down
+        onDismiss();
+        return;
+      }
+    } else if (Math.abs(touchDiffX) > minSwipeDistance) {
+      // Handle horizontal swipes
+      if (touchDiffX > 0) {
         // Swiped left, go to next image
         if (currentImage.id < images.length) {
           navigateToImage(currentImage.id + 1);
         }
       } else {
         // Swiped right, go to previous image
-        if (currentImage.id > 0) {
+        if (currentImage.id > 1) {
           navigateToImage(currentImage.id - 1);
         }
       }
