@@ -1,6 +1,6 @@
 "use client";
 
-import { useCallback, useRef, useEffect } from "react";
+import { useCallback, useRef, useEffect, TouchEvent } from "react";
 import { useRouter } from "next/navigation";
 import { X } from "lucide-react";
 import { ImageProps } from "@/app/lib/types";
@@ -16,6 +16,7 @@ export function Modal({
 }) {
   const overlay = useRef<HTMLDivElement>(null);
   const wrapper = useRef<HTMLDivElement>(null);
+  const touchStart = useRef<number>(0);
   const router = useRouter();
 
   const onDismiss = useCallback(() => {
@@ -61,6 +62,32 @@ export function Modal({
     [currentImage.id, images.length, navigateToImage, onDismiss]
   );
 
+  const handleTouchStart = (e: TouchEvent) => {
+    touchStart.current = e.touches[0].clientX;
+  };
+
+  const handleTouchEnd = (e: TouchEvent) => {
+    const touchEnd = e.changedTouches[0].clientX;
+    const touchDiff = touchStart.current - touchEnd;
+
+    // Minimum swipe distance threshold (in pixels)
+    const minSwipeDistance = 50;
+
+    if (Math.abs(touchDiff) > minSwipeDistance) {
+      if (touchDiff > 0) {
+        // Swiped left, go to next image
+        if (currentImage.id < images.length) {
+          navigateToImage(currentImage.id + 1);
+        }
+      } else {
+        // Swiped right, go to previous image
+        if (currentImage.id > 0) {
+          navigateToImage(currentImage.id - 1);
+        }
+      }
+    }
+  };
+
   useEffect(() => {
     document.addEventListener("keydown", onKeyDown);
     return () => document.removeEventListener("keydown", onKeyDown);
@@ -90,6 +117,10 @@ export function Modal({
       <div
         ref={wrapper}
         className="relative w-full h-full flex justify-center items-center"
+        onTouchStart={handleTouchStart}
+        onTouchEnd={handleTouchEnd}
+        role="region"
+        aria-label="Image gallery navigation"
       >
         {children}
       </div>
