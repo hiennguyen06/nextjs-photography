@@ -66,7 +66,7 @@ const TagFilters = memo(({ allTags, selectedTag }: TagFiltersProps) => {
 
   return (
     <div
-      className="sticky top-0 z-2 bg-white py-2"
+      className="sticky top-0 z-10 bg-white py-2"
       role="region"
       aria-label="Post filters"
     >

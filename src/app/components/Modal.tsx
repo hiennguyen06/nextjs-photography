@@ -133,7 +133,7 @@ export function Modal({
       </button>
       <figure
         ref={wrapper}
-        className={`relative flex flex-col justify-center items-center transition-opacity duration-500 ${
+        className={`relative flex flex-col justify-center items-center transition-opacity duration-300 ease-in ${
           isLoading ? "opacity-0" : "opacity-100"
         }`}
         role="region"
