@@ -9,7 +9,7 @@ const PhotoModal = async ({ params }: { params: Promise<{ id: string }> }) => {
   const currentImage = images.find((img: ImageProps) => img.id === id);
 
   const imageUrl = buildImageUrl(
-    1536,
+    1280,
     currentImage.public_id,
     currentImage.format
   );
