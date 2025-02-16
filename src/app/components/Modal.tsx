@@ -2,7 +2,7 @@
 
 import { useCallback, useRef, useEffect, TouchEvent, useState } from "react";
 import { useRouter } from "next/navigation";
-import { X } from "lucide-react";
+import { X, ArrowLeft, ArrowRight } from "lucide-react";
 import { ImageProps } from "@/app/lib/types";
 import Image from "next/image";
 export function Modal({
@@ -96,7 +96,7 @@ export function Modal({
         }
       } else {
         // Swiped right, go to previous image
-        if (currentImage.id > 1) {
+        if (currentImage.id > 0) {
           navigateToImage(currentImage.id - 1);
         }
       }
@@ -125,35 +125,66 @@ export function Modal({
     >
       <button
         type="button"
-        className="absolute top-0 right-0 p-4 z-10 self-start w-fit text-black"
+        className="absolute top-0 right-0 p-2 z-10 self-start w-fit text-black"
         onClick={onDismiss}
         aria-label="Close modal"
       >
         <X size={24} />
       </button>
-      <figure
+      <div
         ref={wrapper}
-        className={`relative flex flex-col justify-center items-center transition-opacity duration-300 ease-in ${
-          isLoading ? "opacity-0" : "opacity-100"
-        }`}
-        role="region"
-        aria-label="Image gallery navigation"
+        className="flex flex-row justify-between items-center gap-2 w-full"
       >
-        <Image
-          src={imageUrl}
-          alt={currentImage.public_id}
-          width={currentImage.width}
-          height={currentImage.height}
-          className="object-contain w-full max-h-[75vh]"
-          priority
-          onLoad={() => setIsLoading(false)}
-        />
-        {!isLoading && (
-          <figcaption className="text-center text-sm text-gray-500">
-            {currentImage.title || "Gallery image"}
-          </figcaption>
-        )}
-      </figure>
+        <button
+          className={`p-2 z-10 self-center w-fit text-black max-md:hidden ${
+            currentImage.id === 0
+              ? "opacity-30 pointer-events-none"
+              : "opacity-100"
+          }`}
+          type="button"
+          aria-label="Previous image"
+          onClick={() => navigateToImage(currentImage.id - 1)}
+        >
+          <ArrowLeft size={24} />
+        </button>
+        <figure
+          className={`relative flex flex-col justify-center items-center gap-2 transition-opacity duration-300 ease-in ${
+            isLoading ? "opacity-0" : "opacity-100"
+          }`}
+          role="region"
+          aria-label="Image gallery navigation"
+        >
+          <Image
+            src={imageUrl}
+            alt={currentImage.public_id}
+            width={currentImage.width}
+            height={currentImage.height}
+            className="object-contain w-full max-h-[75vh]"
+            priority
+            onLoad={() => setIsLoading(false)}
+          />
+          {!isLoading && (
+            <figcaption className="text-center text-s text-gray-600 flex flex-row justify-between items-center gap-2 w-full max-md:px-2">
+              <span>{currentImage.title || "Gallery image"}</span>
+              <span>
+                {currentImage.id + 1} / {images.length}
+              </span>
+            </figcaption>
+          )}
+        </figure>
+        <button
+          className={`p-2 z-10 self-center w-fit text-black max-md:hidden ${
+            currentImage.id === images.length - 1
+              ? "opacity-30 pointer-events-none"
+              : "opacity-100"
+          }`}
+          type="button"
+          aria-label="Next image"
+          onClick={() => navigateToImage(currentImage.id + 1)}
+        >
+          <ArrowRight size={24} />
+        </button>
+      </div>
     </div>
   );
 }

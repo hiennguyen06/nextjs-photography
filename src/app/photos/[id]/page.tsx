@@ -13,7 +13,7 @@ const PhotoPage = async ({ params }: { params: Promise<{ id: string }> }) => {
     currentImage.format
   );
   return (
-    <div className="flex flex-col items-center justify-center h-screen">
+    <figure className="flex flex-col items-center justify-center h-screen">
       <Image
         src={imageUrl}
         alt={currentImage.public_id}
@@ -22,7 +22,7 @@ const PhotoPage = async ({ params }: { params: Promise<{ id: string }> }) => {
         className="object-contain w-full max-h-[75vh]"
         priority
       />
-    </div>
+    </figure>
   );
 };
 
