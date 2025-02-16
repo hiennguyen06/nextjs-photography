@@ -8,18 +8,18 @@ const Photo = ({ image, index }: PhotoProps) => {
 
   const imageUrl = buildImageUrl(1280, public_id, format);
   return (
-    <figure>
+    <figure className="relative bg-neutral-200 w-full">
       <Link href={`/photos/${id}`} scroll={false}>
-        <div className="relative bg-neutral-200 w-full">
-          <Image
-            src={imageUrl}
-            alt={alt || "Gallery image"}
-            width={width}
-            height={height}
-            loading={`${index < 8 ? "eager" : "lazy"}`}
-            sizes="(max-width: 640px) 100vw, (max-width: 768px) 50vw, (max-width: 1024px) 33vw, (max-width: 1280px) 25vw, 20vw"
-          />
-        </div>
+        <Image
+          src={imageUrl}
+          alt={alt || "Gallery image"}
+          width={width}
+          height={height}
+          loading={`${index < 4 ? "eager" : "lazy"}`}
+          sizes="(max-width: 640px) 100vw, (max-width: 768px) 50vw, (max-width: 1024px) 33vw, (max-width: 1280px) 25vw, 20vw"
+          priority={index < 4}
+          crossOrigin="anonymous"
+        />
         <figcaption className="sr-only">{title}</figcaption>
       </Link>
     </figure>

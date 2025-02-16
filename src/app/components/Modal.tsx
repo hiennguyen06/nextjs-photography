@@ -162,6 +162,7 @@ export function Modal({
             className="object-contain w-full max-h-[75vh]"
             priority
             onLoad={() => setIsLoading(false)}
+            crossOrigin="anonymous"
           />
           {!isLoading && (
             <figcaption className="text-center text-s text-gray-600 flex flex-row justify-between items-center gap-2 w-full max-md:px-2">
