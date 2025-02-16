@@ -131,9 +131,10 @@ export function Modal({
       >
         <X size={24} />
       </button>
+
       <div
         ref={wrapper}
-        className="flex flex-row justify-between items-center gap-2 w-full"
+        className="flex flex-row justify-between max-md:justify-center items-center gap-2 w-full"
       >
         <button
           className={`p-2 z-10 self-center w-fit text-black max-md:hidden ${
@@ -147,32 +148,34 @@ export function Modal({
         >
           <ArrowLeft size={24} />
         </button>
-        <figure
-          className={`relative flex flex-col justify-center items-center gap-2 transition-opacity duration-300 ease-in ${
-            isLoading ? "opacity-0" : "opacity-100"
-          }`}
-          role="region"
-          aria-label="Image gallery navigation"
-        >
-          <Image
-            src={imageUrl}
-            alt={currentImage.public_id}
-            width={currentImage.width}
-            height={currentImage.height}
-            className="object-contain w-full max-h-[75vh]"
-            priority
-            onLoad={() => setIsLoading(false)}
-            crossOrigin="anonymous"
-          />
-          {!isLoading && (
-            <figcaption className="text-center text-s text-gray-600 flex flex-row justify-between items-center gap-2 w-full max-md:px-2">
-              <span>{currentImage.caption || "Gallery image"}</span>
-              <span>
-                {currentImage.id + 1} / {images.length}
-              </span>
-            </figcaption>
-          )}
-        </figure>
+        <div className="relative">
+          <figure
+            className={`relative flex flex-col justify-center items-center gap-2 transition-opacity duration-300 ease-in-out ${
+              isLoading ? "opacity-0" : "opacity-100"
+            }`}
+            role="region"
+            aria-label="Image gallery navigation"
+          >
+            <Image
+              src={imageUrl}
+              alt={currentImage.public_id}
+              width={currentImage.width}
+              height={currentImage.height}
+              className="object-contain w-full max-h-[75vh]"
+              priority
+              onLoad={() => setIsLoading(false)}
+              crossOrigin="anonymous"
+            />
+            {!isLoading && (
+              <figcaption className="text-center text-s text-gray-600 flex flex-row justify-between items-center gap-2 w-full max-md:px-2">
+                <span>{currentImage.caption || "Gallery image"}</span>
+                <span>
+                  {currentImage.id + 1} / {images.length}
+                </span>
+              </figcaption>
+            )}
+          </figure>
+        </div>
         <button
           className={`p-2 z-10 self-center w-fit text-black max-md:hidden ${
             currentImage.id === images.length - 1
