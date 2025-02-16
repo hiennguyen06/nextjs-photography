@@ -1,16 +1,16 @@
 "use client";
 
-import { useCallback, useRef, useEffect, TouchEvent } from "react";
+import { useCallback, useRef, useEffect, TouchEvent, useState } from "react";
 import { useRouter } from "next/navigation";
 import { X } from "lucide-react";
 import { ImageProps } from "@/app/lib/types";
-
+import Image from "next/image";
 export function Modal({
-  children,
   currentImage,
   images,
+  imageUrl,
 }: {
-  children: React.ReactNode;
+  imageUrl: string;
   currentImage: ImageProps;
   images: ImageProps[];
 }) {
@@ -19,6 +19,7 @@ export function Modal({
   const touchStart = useRef<number>(0);
   const touchStartY = useRef<number>(0);
   const router = useRouter();
+  const [isLoading, setIsLoading] = useState(true);
 
   const onDismiss = useCallback(() => {
     router.back();
@@ -119,25 +120,40 @@ export function Modal({
       ref={overlay}
       className="fixed inset-0 z-10 bg-white flex items-center justify-center flex-col"
       onClick={onClick}
+      onTouchStart={handleTouchStart}
+      onTouchEnd={handleTouchEnd}
     >
       <button
         type="button"
-        className="p-4 self-start w-fit text-black"
+        className="absolute top-0 right-0 p-4 z-10 self-start w-fit text-black"
         onClick={onDismiss}
         aria-label="Close modal"
       >
         <X size={24} />
       </button>
-      <div
+      <figure
         ref={wrapper}
-        className="relative w-full h-full flex justify-center items-center"
-        onTouchStart={handleTouchStart}
-        onTouchEnd={handleTouchEnd}
+        className={`relative flex flex-col justify-center items-center transition-opacity duration-500 ${
+          isLoading ? "opacity-0" : "opacity-100"
+        }`}
         role="region"
         aria-label="Image gallery navigation"
       >
-        {children}
-      </div>
+        <Image
+          src={imageUrl}
+          alt={currentImage.public_id}
+          width={currentImage.width}
+          height={currentImage.height}
+          className="object-contain w-full max-h-[75vh]"
+          priority
+          onLoad={() => setIsLoading(false)}
+        />
+        {!isLoading && (
+          <figcaption className="text-center text-sm text-gray-500">
+            {currentImage.title || "Gallery image"}
+          </figcaption>
+        )}
+      </figure>
     </div>
   );
 }
