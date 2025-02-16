@@ -10,14 +10,17 @@ const Photo = ({ image, index }: PhotoProps) => {
   return (
     <figure>
       <Link href={`/photos/${id}`} scroll={false}>
-        <Image
-          src={imageUrl}
-          alt={alt || "Gallery image"}
-          width={width}
-          height={height}
-          loading={`${index < 8 ? "eager" : "lazy"}`}
-          sizes="(max-width: 640px) 100vw, (max-width: 768px) 50vw, (max-width: 1024px) 33vw, (max-width: 1280px) 25vw, 20vw"
-        />
+        <div className="relative bg-neutral-200 w-full">
+          <Image
+            src={imageUrl}
+            alt={alt || "Gallery image"}
+            width={width}
+            height={height}
+            loading={`${index < 8 ? "eager" : "lazy"}`}
+            sizes="(max-width: 640px) 100vw, (max-width: 768px) 50vw, (max-width: 1024px) 33vw, (max-width: 1280px) 25vw, 20vw"
+            className="transition-opacity duration-300"
+          />
+        </div>
         <figcaption className="sr-only">{title}</figcaption>
       </Link>
     </figure>
