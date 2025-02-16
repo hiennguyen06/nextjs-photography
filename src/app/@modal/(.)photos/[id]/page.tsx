@@ -7,10 +7,9 @@ const PhotoModal = async ({ params }: { params: Promise<{ id: string }> }) => {
   const id = Number.parseInt((await params).id);
   const images = await getPhotos();
   const currentImage = images.find((img: ImageProps) => img.id === id);
-  console.log(images);
 
   const imageUrl = buildImageUrl(
-    1280,
+    1536,
     currentImage.public_id,
     currentImage.format
   );

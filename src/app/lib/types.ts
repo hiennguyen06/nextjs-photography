@@ -10,7 +10,7 @@ export interface CloudinaryResourceProps {
   public_id: string;
   context?: {
     alt: string;
-    title: string;
+    caption: string;
   };
   aspect_ratio: number;
 }
@@ -22,7 +22,7 @@ export interface ImageProps {
   height: number;
   tags?: string[];
   alt?: string;
-  title?: string;
+  caption?: string;
   public_id: string;
   format: string;
   aspectRatio: number;

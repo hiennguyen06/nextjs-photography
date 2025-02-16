@@ -27,6 +27,7 @@ const getPhotos = async () => {
   );
 
   const results = await response.json();
+  console.log(results);
 
   return results.resources.map(
     (resource: CloudinaryResourceProps, index: number) => ({
@@ -38,7 +39,7 @@ const getPhotos = async () => {
       format: resource.format,
       tags: resource.tags,
       alt: resource.context?.alt,
-      title: resource.context?.title,
+      caption: resource.context?.caption,
       aspectRatio: resource.aspect_ratio,
     })
   );

@@ -166,7 +166,7 @@ export function Modal({
           />
           {!isLoading && (
             <figcaption className="text-center text-s text-gray-600 flex flex-row justify-between items-center gap-2 w-full max-md:px-2">
-              <span>{currentImage.title || "Gallery image"}</span>
+              <span>{currentImage.caption || "Gallery image"}</span>
               <span>
                 {currentImage.id + 1} / {images.length}
               </span>

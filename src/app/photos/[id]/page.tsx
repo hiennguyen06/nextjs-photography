@@ -8,7 +8,7 @@ const PhotoPage = async ({ params }: { params: Promise<{ id: string }> }) => {
   const images = await getPhotos();
   const currentImage = images.find((img: ImageProps) => img.id === id);
   const imageUrl = buildImageUrl(
-    1920,
+    1536,
     currentImage.public_id,
     currentImage.format
   );

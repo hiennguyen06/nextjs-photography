@@ -4,7 +4,7 @@ import { buildImageUrl } from "@/app/lib/utils";
 import Link from "next/link";
 
 const Photo = ({ image, index }: PhotoProps) => {
-  const { id, title, alt, width, height, public_id, format } = image;
+  const { id, caption, alt, width, height, public_id, format } = image;
 
   const imageUrl = buildImageUrl(1280, public_id, format);
   return (
@@ -20,7 +20,7 @@ const Photo = ({ image, index }: PhotoProps) => {
           priority={index < 4}
           crossOrigin="anonymous"
         />
-        <figcaption className="sr-only">{title}</figcaption>
+        <figcaption className="sr-only">{caption}</figcaption>
       </Link>
     </figure>
   );

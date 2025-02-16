@@ -5,5 +5,5 @@ export const buildImageUrl = (
   public_id: string,
   format: string
 ): string => {
-  return `${CLOUDINARY_BASE_URL}/q_auto:best,f_auto,c_limit,w_${width},dpr_auto/${public_id}.${format}`;
+  return `${CLOUDINARY_BASE_URL}/q_auto:eco,f_webp,c_fill,w_${width},dpr_auto/${public_id}.${format}`;
 };
