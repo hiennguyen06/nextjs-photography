@@ -16,7 +16,7 @@ const PhotoGallery = ({ images, selectedTag }: PhotoGalleryProps) => {
       <TagFilters allTags={allTags} selectedTag={selectedTag} />
       <ul
         role="list"
-        className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-x-4 max-lg:gap-x-4 gap-y-4 max-lg:gap-y-4 items-end select-none py-4"
+        className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-x-6 max-lg:gap-x-4 gap-y-6 max-lg:gap-y-4 items-end select-none py-4"
       >
         {filteredImages.map((image, index) => {
           return (
