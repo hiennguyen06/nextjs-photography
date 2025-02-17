@@ -19,7 +19,7 @@ const TagButton = memo(
         onClick={() => onClick(tag)}
         aria-pressed={isSelected}
         className={`
-        relative px-4 min-w-11 py-2 text-sm rounded-full transition-all
+        relative px-4 min-w-11 py-2 text-sm rounded-full transition-all select-none
         ${
           isSelected
             ? "bg-[#18181B] text-white"
@@ -80,7 +80,7 @@ const TagFilters = memo(({ allTags, selectedTag }: TagFiltersProps) => {
             onClick={handleAllClick}
             aria-pressed={optimisticSelectedTag === null}
             className={`
-              relative px-4 min-w-11 py-2 text-sm rounded-full transition-all
+              relative px-4 min-w-11 py-2 text-sm rounded-full transition-all select-none
               ${
                 !optimisticSelectedTag
                   ? "bg-[#18181B] text-white"
