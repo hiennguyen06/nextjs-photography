@@ -11,7 +11,7 @@ const Header = () => {
           width={100}
           height={100}
           priority
-          className="rounded-full border-2"
+          className="rounded-full"
         />
         <figcaption className="flex flex-col items-center">
           <p className="text-balance text-center">
