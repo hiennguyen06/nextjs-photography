@@ -17,7 +17,7 @@ const getPhotos = async () => {
       body: JSON.stringify({
         expression: `folder:${process.env.CLOUDINARY_FOLDER}`,
         sort_by: [{ created_at: "desc" }],
-        max_results: 100,
+        max_results: 150,
         with_field: ["tags", "context"],
       }),
       next: {
