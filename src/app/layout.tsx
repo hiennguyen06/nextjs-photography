@@ -8,7 +8,7 @@ const inconsolata = Inconsolata({
 });
 
 export const metadata: Metadata = {
-  title: "Photos | Hien Nguyen",
+  title: "Photos | Hien",
   description:
     "A collection of photos captured on film and digital by Hien Nguyen",
 
