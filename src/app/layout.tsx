@@ -12,6 +12,22 @@ export const metadata: Metadata = {
   description:
     "A collection of photos captured on film and digital by Hien Nguyen",
 
+  // Open Graph metadata
+  openGraph: {
+    title: "Photos | Hien",
+    description:
+      "A collection of photos captured on film and digital by Hien Nguyen",
+    images: [
+      {
+        url: "/open-graph-image.webp", // Replace with your image path
+        width: 1200,
+        height: 630,
+        alt: "Photos by Hien",
+      },
+    ],
+    type: "website",
+  },
+
   icons: {
     // Classic favicon
     icon: [
